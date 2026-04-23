@@ -1,0 +1,77 @@
+/*
+ * mpu6050.h
+ *
+ *  Created on: Apr 15, 2026
+ *      Author: dalya
+ */
+
+#ifndef INC_MPU6050_H_
+#define INC_MPU6050_H_
+
+#include "stm32f1xx_hal.h"
+#include <stdint.h>
+
+// MPU6050 I2C Addresses
+#define MPU6050_I2C_ADDR_LOW    0x68 << 1   // AD0 = 0
+#define MPU6050_I2C_ADDR_HIGH   0x69 << 1   // AD0 = 1
+
+// Register Addresses
+#define MPU6050_REG_PWR_MGMT_1      0x6B
+#define MPU6050_REG_CONFIG          0x1A
+#define MPU6050_REG_GYRO_CONFIG     0x1B
+#define MPU6050_REG_ACCEL_CONFIG    0x1C
+#define MPU6050_REG_ACCEL_XOUT_H    0x3B
+#define MPU6050_REG_TEMP_OUT_H      0x41
+#define MPU6050_REG_GYRO_XOUT_H     0x43
+#define MPU6050_REG_WHO_AM_I        0x75
+
+#define MPU6050_DATA_SIZE       14  // 6 bytes accel + 2 bytes temp + 6 bytes gyro
+
+typedef enum {
+	MPU6050_STATE_INIT,
+	MPU6050_STATE_READY,
+	MPU6050_STATE_READING_DATA,
+	MPU6050_STATE_ERROR
+} MPU6050_State_t;
+
+typedef struct {
+	I2C_HandleTypeDef *hi2c;
+	uint8_t i2c_addr;
+	MPU6050_State_t state;
+	
+	// Raw sensor data (from I2C)
+	int16_t accel_x_raw, accel_y_raw, accel_z_raw;
+	int16_t gyro_x_raw, gyro_y_raw, gyro_z_raw;
+	int16_t temp_raw;
+	
+	// Scaled sensor data
+	float accel_x, accel_y, accel_z;      // in g
+	float gyro_x, gyro_y, gyro_z;         // in deg/s
+	float temperature;                     // in °C
+	float roll, pitch;                     // in degrees (calculated from accel)
+	
+	// Scale factors
+	float accel_scale;  // from configuration
+	float gyro_scale;   // from configuration
+	
+	// Calibration offsets
+	int16_t accel_offset_x, accel_offset_y, accel_offset_z;
+	int16_t gyro_offset_x, gyro_offset_y, gyro_offset_z;
+	
+	// I2C buffers
+	uint8_t tx_buff[1];
+	uint8_t rx_buff[14];
+	
+	// Callback function
+	void (*data_ready_callback)(void);
+} MPU6050_Handle_t;
+
+// Function declarations
+void MPU6050_Init(MPU6050_Handle_t *handle, I2C_HandleTypeDef *hi2c, uint8_t i2c_addr);
+void MPU6050_Start_Reading(MPU6050_Handle_t *handle);
+void MPU6050_Process(MPU6050_Handle_t *handle);
+void MPU6050_I2C_RxCpltCallback(MPU6050_Handle_t *handle);
+void MPU6050_I2C_TxCpltCallback(MPU6050_Handle_t *handle);
+void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples);
+
+#endif /* INC_MPU6050_H_ */
