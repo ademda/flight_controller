@@ -1,0 +1,12 @@
+../App/Control/Sensors/Src/StateEstimator.cpp:10:1:StateEstimator::StateEstimator()	1
+../App/Control/Sensors/Src/StateEstimator.cpp:13:1:StateEstimator::~StateEstimator()	1
+../App/Control/Sensors/Src/StateEstimator.cpp:17:6:bool StateEstimator::initializeSensors()	7
+../App/Control/Sensors/Src/StateEstimator.cpp:41:7:float StateEstimator::getAltitude() const	2
+../App/Control/Sensors/Src/StateEstimator.cpp:50:7:float StateEstimator::getHeading() const	2
+../App/Control/Sensors/Src/StateEstimator.cpp:59:10:Vector3D StateEstimator::getAcceleration()	2
+../App/Control/Sensors/Src/StateEstimator.cpp:67:10:Vector3D StateEstimator::getAngularVelocity()	2
+../App/Control/Sensors/Src/StateEstimator.cpp:75:6:void StateEstimator::updateState()	4
+../App/Control/Sensors/Src/StateEstimator.cpp:104:9:Filter* StateEstimator::getFilter()	1
+../App/Control/Sensors/Src/StateEstimator.cpp:108:12:Barometer* StateEstimator::getBarometer()	1
+../App/Control/Sensors/Src/StateEstimator.cpp:112:6:IMU* StateEstimator::getIMU()	1
+../App/Control/Sensors/Src/StateEstimator.cpp:116:15:Magnetometer* StateEstimator::getMagnetometer()	1

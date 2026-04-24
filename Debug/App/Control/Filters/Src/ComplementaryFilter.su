@@ -1,0 +1,8 @@
+../App/Control/Filters/Src/ComplementaryFilter.cpp:10:1:ComplementaryFilter::ComplementaryFilter(float)	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:20:1:ComplementaryFilter::~ComplementaryFilter()	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:20:1:virtual ComplementaryFilter::~ComplementaryFilter()	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:23:7:virtual float ComplementaryFilter::apply(float)	24	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:41:6:virtual void ComplementaryFilter::reset()	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:46:6:void ComplementaryFilter::setAlpha(float)	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:57:7:float ComplementaryFilter::getAlpha() const	16	static
+../App/Control/Filters/Src/ComplementaryFilter.cpp:61:7:float ComplementaryFilter::getState() const	16	static

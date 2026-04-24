@@ -8,7 +8,7 @@
 #include "bmp280.h"
 #include <math.h>
 
-static BMP280_Handle_t *g_bmp280_handle = NULL;
+BMP280_Handle_t *g_bmp280_handle = NULL;
 
 
 // Initialize BMP280 with interrupt mode
@@ -153,21 +153,5 @@ static void BMP280_Calculate_Values(BMP280_Handle_t *handle)
 	
 	// Altitude calculation
 	handle->altitude = 44330.0f * (1 - powf(handle->pressure / 101325.0f, 1.0f / 5.255f));
-}
-
-void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-	if (g_bmp280_handle && hi2c == g_bmp280_handle->hi2c)
-	{
-		BMP280_I2C_TxCpltCallback(g_bmp280_handle);
-	}
-}
-
-void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-	if (g_bmp280_handle && hi2c == g_bmp280_handle->hi2c)
-	{
-		BMP280_I2C_RxCpltCallback(g_bmp280_handle);
-	}
 }
 

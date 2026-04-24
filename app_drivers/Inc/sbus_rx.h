@@ -11,7 +11,7 @@
 #ifndef INC_SBUS_RX_H_
 #define INC_SBUS_RX_H_
 
-#include "stm32f1xx_hal.h"
+#include "stm32f4xx_hal.h"
 #include <stdint.h>
 
 /* iBUS Protocol constants */

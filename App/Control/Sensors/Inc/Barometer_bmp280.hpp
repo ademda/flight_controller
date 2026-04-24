@@ -17,6 +17,7 @@ private:
     float sea_level_pressure;  // Reference pressure for altitude calculation
     
 public:
+    Barometer_bmp280() = default;
     Barometer_bmp280(BMP280_Handle_t *handle, I2C_HandleTypeDef *hi2c);
     virtual ~Barometer_bmp280();
     

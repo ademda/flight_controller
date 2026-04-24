@@ -1,0 +1,7 @@
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:11:1:Magnetometer_GY273::Magnetometer_GY273()	16	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:14:1:Magnetometer_GY273::~Magnetometer_GY273()	16	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:14:1:virtual Magnetometer_GY273::~Magnetometer_GY273()	16	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:17:6:virtual bool Magnetometer_GY273::init()	16	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:22:15:virtual MagneticField Magnetometer_GY273::readMagneticField()	56	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:29:7:virtual float Magnetometer_GY273::calculateHeading(MagneticField)	32	static
+../App/Control/Sensors/Src/Magnetometer_GY273.cpp:44:6:virtual bool Magnetometer_GY273::calibrate()	16	static

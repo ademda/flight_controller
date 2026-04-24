@@ -8,10 +8,10 @@
 #include "mpu6050.h"
 #include <math.h>
 
-static MPU6050_Handle_t *g_mpu6050_handle = NULL;
+MPU6050_Handle_t *g_mpu6050_handle = NULL;
 
 // Forward declarations
-static void MPU6050_Parse_Data(MPU6050_Handle_t *handle);
+void MPU6050_Parse_Data(MPU6050_Handle_t *handle);
 static void MPU6050_Configure(MPU6050_Handle_t *handle);
 
 // Initialize MPU6050 with interrupt mode
@@ -74,7 +74,7 @@ void MPU6050_Start_Reading(MPU6050_Handle_t *handle)
 }
 
 // Parse raw I2C data and convert to sensor values
-static void MPU6050_Parse_Data(MPU6050_Handle_t *handle)
+void MPU6050_Parse_Data(MPU6050_Handle_t *handle)
 {
 	uint8_t *rx = handle->rx_buff;
 	
@@ -104,23 +104,7 @@ static void MPU6050_Parse_Data(MPU6050_Handle_t *handle)
 	handle->pitch = atan2f(-handle->accel_x, sqrtf(handle->accel_y * handle->accel_y + handle->accel_z * handle->accel_z)) * 180.0f / 3.14159265359f;
 }
 
-// Weak function - override in main.c or stm32f1xx_it.c
-void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-	if (g_mpu6050_handle && hi2c == g_mpu6050_handle->hi2c)
-	{
-		MPU6050_I2C_TxCpltCallback(g_mpu6050_handle);
-	}
-}
 
-// Weak function - override in main.c or stm32f1xx_it.c
-void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-	if (g_mpu6050_handle && hi2c == g_mpu6050_handle->hi2c)
-	{
-		MPU6050_I2C_RxCpltCallback(g_mpu6050_handle);
-	}
-}
 
 // Calibration function - collects samples to compute offset values
 void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples)

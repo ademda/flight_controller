@@ -19,6 +19,7 @@ private:
     Vector3D gyro_offset;   // Gyroscope offset for calibration
     
 public:
+    IMU_MPU6050() = default;
     IMU_MPU6050(MPU6050_Handle_t *handle, I2C_HandleTypeDef *hi2c);
     virtual ~IMU_MPU6050();
     

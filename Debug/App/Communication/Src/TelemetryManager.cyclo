@@ -1,0 +1,2 @@
+../App/Communication/Src/TelemetryManager.cpp:11:1:TelemetryManager::~TelemetryManager()	1
+../App/Communication/Src/TelemetryManager.cpp:11:1:virtual TelemetryManager::~TelemetryManager()	1

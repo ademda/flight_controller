@@ -1,0 +1,9 @@
+../App/Blogic/Src/Drone.cpp:10:1:Drone::Drone(RCReceiver*, TelemetryManager*)	24	static
+../App/Blogic/Src/Drone.cpp:14:1:Drone::~Drone()	16	static
+../App/Blogic/Src/Drone.cpp:20:6:bool Drone::init()	16	static
+../App/Blogic/Src/Drone.cpp:33:6:void Drone::update(float)	40	static
+../App/Blogic/Src/Drone.cpp:58:6:bool Drone::arm()	16	static
+../App/Blogic/Src/Drone.cpp:67:6:bool Drone::disarm()	16	static
+../App/Blogic/Src/Drone.cpp:72:6:void Drone::emergencyLanding()	16	static
+../App/Blogic/Src/Drone.cpp:77:14:DroneConfig& Drone::getConfig()	16	static
+../App/Blogic/Src/Drone.cpp:81:6:bool Drone::isArmed() const	16	static

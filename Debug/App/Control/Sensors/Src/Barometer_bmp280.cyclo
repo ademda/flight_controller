@@ -1,0 +1,8 @@
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:15:1:Barometer_bmp280::Barometer_bmp280(BMP280_Handle_t*, I2C_HandleTypeDef*)	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:19:1:Barometer_bmp280::~Barometer_bmp280()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:19:1:virtual Barometer_bmp280::~Barometer_bmp280()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:22:6:virtual bool Barometer_bmp280::init()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:27:7:virtual float Barometer_bmp280::readPressure()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:31:7:virtual float Barometer_bmp280::readTemperature()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:35:7:virtual float Barometer_bmp280::readAltitude()	1
+../App/Control/Sensors/Src/Barometer_bmp280.cpp:39:6:virtual void Barometer_bmp280::readData()	1

@@ -9,7 +9,7 @@
 #define COMMUNICATION_INC_IBUSRECEIVER_HPP_
 
 #include "RCReceiver.hpp"
-#include "stm32f1xx_hal.h"
+#include "stm32f4xx_hal.h"
 #include <stdint.h>
 
 class IBUSReceiver : public RCReceiver {

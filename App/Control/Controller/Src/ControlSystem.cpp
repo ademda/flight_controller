@@ -5,7 +5,7 @@
  *      Author: dalya
  */
 
-#include "../Inc/ControlSystem.hpp"
+#include "ControlSystem.hpp"
 #include <algorithm>
 #include <math.h>
 

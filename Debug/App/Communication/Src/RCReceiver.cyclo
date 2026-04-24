@@ -1,0 +1,2 @@
+../App/Communication/Src/RCReceiver.cpp:10:1:RCReceiver::~RCReceiver()	1
+../App/Communication/Src/RCReceiver.cpp:10:1:virtual RCReceiver::~RCReceiver()	1

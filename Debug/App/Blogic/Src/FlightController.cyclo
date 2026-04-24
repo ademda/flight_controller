@@ -1,0 +1,16 @@
+../App/Blogic/Src/FlightController.cpp:10:1:FlightController::FlightController()	1
+../App/Blogic/Src/FlightController.cpp:14:1:FlightController::FlightController(GPSReceiver*)	1
+../App/Blogic/Src/FlightController.cpp:18:1:FlightController::~FlightController()	2
+../App/Blogic/Src/FlightController.cpp:24:6:bool FlightController::init()	4
+../App/Blogic/Src/FlightController.cpp:41:6:void FlightController::update(float)	3
+../App/Blogic/Src/FlightController.cpp:56:6:void FlightController::setAttitudeSetpoints(float, float, float)	1
+../App/Blogic/Src/FlightController.cpp:60:6:void FlightController::setAltitudeSetpoint(float)	1
+../App/Blogic/Src/FlightController.cpp:64:6:void FlightController::setThrottle(float)	1
+../App/Blogic/Src/FlightController.cpp:68:6:bool FlightController::arm()	2
+../App/Blogic/Src/FlightController.cpp:73:6:bool FlightController::disarm()	1
+../App/Blogic/Src/FlightController.cpp:77:6:bool FlightController::isArmed() const	1
+../App/Blogic/Src/FlightController.cpp:81:6:void FlightController::emergencyStop()	1
+../App/Blogic/Src/FlightController.cpp:85:10:Vector3D FlightController::getAttitude() const	1
+../App/Blogic/Src/FlightController.cpp:93:7:float FlightController::getAltitude() const	1
+../App/Blogic/Src/FlightController.cpp:97:9:GPSData FlightController::getGPSData() const	2
+../App/Blogic/Src/FlightController.cpp:104:6:void FlightController::setLoopFrequency(float)	2

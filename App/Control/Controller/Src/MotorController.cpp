@@ -5,8 +5,11 @@
  *      Author: dalya
  */
 #include "MotorController.hpp"
-#include "esc_pwm.h"
 #include <algorithm>
+extern "C" {
+    #include "esc_pwm.h"
+}
+MotorController::MotorController(){}
 
 MotorController::MotorController(TIM_HandleTypeDef *htim_in) 
     : armed(false), calibrated(false), min_throttle(0.1f), max_throttle(1.0f), htim(htim_in) {

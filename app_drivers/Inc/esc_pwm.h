@@ -8,8 +8,9 @@
 #ifndef INC_ESC_PWM_H_
 #define INC_ESC_PWM_H_
 
-#include "stm32f1xx_hal.h"
+#include "stm32f4xx_hal.h"
 #include <stdint.h>
+#include <stdbool.h>
 
 // Timer configuration parameters
 #define ESC_TIMER_PRESCALER     63      // Prescaler value

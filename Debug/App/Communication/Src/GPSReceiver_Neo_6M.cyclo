@@ -1,0 +1,7 @@
+../App/Communication/Src/../Inc/GPSReceiver.hpp:22:7:GPSReceiver::GPSReceiver()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:10:1:GPSReceiver_Neo_6M::GPSReceiver_Neo_6M()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:14:1:GPSReceiver_Neo_6M::~GPSReceiver_Neo_6M()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:14:1:virtual GPSReceiver_Neo_6M::~GPSReceiver_Neo_6M()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:17:6:bool GPSReceiver_Neo_6M::init()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:22:9:virtual GPSData GPSReceiver_Neo_6M::getCoordinates()	1
+../App/Communication/Src/GPSReceiver_Neo_6M.cpp:27:6:void GPSReceiver_Neo_6M::updateRawData(const GPSData&)	1

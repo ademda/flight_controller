@@ -1,0 +1,10 @@
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:10:1:IMU_MPU6050::IMU_MPU6050(MPU6050_Handle_t*, I2C_HandleTypeDef*)	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:14:1:IMU_MPU6050::~IMU_MPU6050()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:14:1:virtual IMU_MPU6050::~IMU_MPU6050()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:17:6:virtual bool IMU_MPU6050::init()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:22:10:virtual Vector3D IMU_MPU6050::readAccelerometer()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:27:10:virtual Vector3D IMU_MPU6050::readGyroscope()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:31:7:virtual float IMU_MPU6050::readRoll()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:35:7:virtual float IMU_MPU6050::readPitch()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:39:6:virtual bool IMU_MPU6050::calibrate()	1
+../App/Control/Sensors/Src/IMU_MPU6050.cpp:44:6:virtual void IMU_MPU6050::readData()	1

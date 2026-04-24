@@ -8,7 +8,7 @@
 #ifndef CONTROL_CONTROLLER_INC_MOTORCONTROLLER_HPP_
 #define CONTROL_CONTROLLER_INC_MOTORCONTROLLER_HPP_
 
-#include "stm32f1xx_hal.h"
+#include "stm32f4xx_hal.h"
 
 /**
  * @struct MotorThrottle

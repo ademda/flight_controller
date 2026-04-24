@@ -22,6 +22,9 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "mpu6050.h"
+#include "bmp280.h"
+#include "sbus_rx.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +34,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+extern BMP280_Handle_t *g_bmp280_handle;
+extern MPU6050_Handle_t *g_mpu6050_handle;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -213,13 +217,6 @@ void DMA2_Stream2_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  if (htim->Instance == TIM2) {
-    /* Update flight controller at 1kHz */
-    FlightController_Update(0.001f);  // 1ms timestep
-  }
-}
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart->Instance == USART1) {
@@ -227,14 +224,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     }
 }
 
-// I2C Transmit complete callback
-void MPU6050_I2C_TxCpltCallback(MPU6050_Handle_t *handle)
+
+void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c)
 {
-	if (handle->state == MPU6050_STATE_READING_DATA)
+	if (g_bmp280_handle && hi2c == g_bmp280_handle->hi2c)
 	{
-		// After sending register address, read sensor data
-		// 6 bytes accel + 2 bytes temp + 6 bytes gyro = 14 bytes
-		HAL_I2C_Master_Receive_IT(handle->hi2c, handle->i2c_addr | 0x01, handle->rx_buff, MPU6050_DATA_SIZE);
+		BMP280_I2C_TxCpltCallback(g_bmp280_handle);
+	}
+	else if (g_mpu6050_handle && hi2c == g_mpu6050_handle->hi2c)
+	{
+		MPU6050_I2C_TxCpltCallback(g_mpu6050_handle);
 	}
 }
 

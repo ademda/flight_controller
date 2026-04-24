@@ -6,7 +6,7 @@
  */
 
 #include "main_loop.h"
-#include "stm32f1xx_hal.h"
+#include "stm32f4xx_hal.h"
 
 // Extern functions from C++ layer
 extern void FlightController_Update(float dt);
