@@ -13,7 +13,6 @@
 #include "StateEstimator.hpp"
 #include "GPSReceiver.hpp"
 #include "RCReceiver.hpp"
-
 /**
  * @class FlightController
  * @brief Core flight control loop managing sensor fusion and attitude stabilization

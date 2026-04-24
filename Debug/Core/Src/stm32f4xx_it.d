@@ -35,7 +35,8 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Core/Inc/stm32f4xx_it.h \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/mpu6050.h \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/bmp280.h \
- C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/sbus_rx.h
+ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/sbus_rx.h \
+ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Blogic/Inc/FlightControllerInit.hpp
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -74,3 +75,4 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/mpu6050.h:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/bmp280.h:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/sbus_rx.h:
+C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Blogic/Inc/FlightControllerInit.hpp:

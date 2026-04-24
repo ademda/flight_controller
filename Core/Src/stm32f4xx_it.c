@@ -25,6 +25,7 @@
 #include "mpu6050.h"
 #include "bmp280.h"
 #include "sbus_rx.h"
+#include "FlightControllerInit.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -217,6 +218,15 @@ void DMA2_Stream2_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM2)
+	{
+	  FlightController_Update(CONTROL_LOOP_DT);
+	}
+}
+
+
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart->Instance == USART1) {

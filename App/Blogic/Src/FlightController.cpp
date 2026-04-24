@@ -62,7 +62,6 @@ void FlightController::setAltitudeSetpoint(float altitude_sp) {
 }
 
 void FlightController::setThrottle(float throttle) {
-    // TODO: Implement direct throttle control
 }
 
 bool FlightController::arm() {

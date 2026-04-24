@@ -23,7 +23,6 @@
 "./App/Control/Sensors/Src/Magnetometer_GY273.o"
 "./App/Control/Sensors/Src/StateEstimator.o"
 "./Core/Src/main.o"
-"./Core/Src/main_loop.o"
 "./Core/Src/stm32f4xx_hal_msp.o"
 "./Core/Src/stm32f4xx_it.o"
 "./Core/Src/syscalls.o"

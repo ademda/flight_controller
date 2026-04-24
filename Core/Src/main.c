@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "FlightControllerInit.hpp"
-#include "main_loop.h"
 #include "esc_pwm.h"
 /* USER CODE END Includes */
 
