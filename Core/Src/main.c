@@ -25,6 +25,7 @@
 #include "esc_pwm.h"
 #include "tuning.h"
 #include "pid_tuning_cmd.h"
+#include "hardware_test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -133,8 +134,11 @@ int main(void)
   // Initialize PID tuning command handler (use UART2 for tuning)
   pid_tuning_cmd_init(&huart2);
   
-  // Start UART2 character-by-character reception
-  HAL_UART_Receive_IT(&huart2, &uart2_rx_char, 1);
+  // Initialize hardware testing interface (sensor and motor control)
+  hwtest_init(&htim1, &hi2c1);
+  
+  // Enable UART2 interrupt-based character reception for tuning commands
+  HAL_UART_Receive_IT(&huart2, (uint8_t*)&huart2.pRxBuffPtr, 1);
   
   // Start main control loop (100Hz)
   HAL_TIM_Base_Start_IT(&htim2);
@@ -147,6 +151,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    
     // Process PID tuning commands from UART
     pid_tuning_cmd_update();
     

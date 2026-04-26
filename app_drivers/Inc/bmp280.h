@@ -54,11 +54,7 @@ typedef struct {
 	float altitude;
 	
 	// I2C buffers
-	uint8_t tx_buff[1];
 	uint8_t rx_buff[24];
-	
-	// Callback function
-	void (*data_ready_callback)(void);
 } BMP280_Handle_t;
 
 // Function declarations
@@ -68,6 +64,5 @@ static void BMP280_Read_Calibration(BMP280_Handle_t *handle);
 static void BMP280_Calculate_Values(BMP280_Handle_t *handle);
 void BMP280_Process(BMP280_Handle_t *handle);
 void BMP280_I2C_RxCpltCallback(BMP280_Handle_t *handle);
-void BMP280_I2C_TxCpltCallback(BMP280_Handle_t *handle);
 
 #endif /* INC_BMP280_H_ */

@@ -20,7 +20,6 @@ void MPU6050_Init(MPU6050_Handle_t *handle, I2C_HandleTypeDef *hi2c, uint8_t i2c
 	handle->hi2c = hi2c;
 	handle->i2c_addr = i2c_addr;
 	handle->state = MPU6050_STATE_INIT;
-	handle->data_ready_callback = NULL;
 	
 	// Set default scale factors
 	handle->accel_scale = 1.0f / 16384.0f;  // ±2g range
@@ -68,8 +67,7 @@ void MPU6050_Start_Reading(MPU6050_Handle_t *handle)
 	if (handle->state == MPU6050_STATE_READY)
 	{
 		handle->state = MPU6050_STATE_READING_DATA;
-		handle->tx_buff[0] = MPU6050_REG_ACCEL_XOUT_H;
-		HAL_I2C_Master_Transmit_IT(handle->hi2c, handle->i2c_addr, handle->tx_buff, 1);
+		HAL_I2C_Mem_Read_IT(handle->hi2c, handle->i2c_addr, MPU6050_REG_ACCEL_XOUT_H, I2C_MEMADD_SIZE_8BIT, handle->rx_buff, MPU6050_DATA_SIZE);
 	}
 }
 
@@ -102,6 +100,21 @@ void MPU6050_Parse_Data(MPU6050_Handle_t *handle)
 	// Calculate roll and pitch from accelerometer (in degrees)
 	handle->roll = atan2f(handle->accel_y, handle->accel_z) * 180.0f / 3.14159265359f;
 	handle->pitch = atan2f(-handle->accel_x, sqrtf(handle->accel_y * handle->accel_y + handle->accel_z * handle->accel_z)) * 180.0f / 3.14159265359f;
+}
+
+// I2C Receive complete callback - process data and immediately request next read
+void MPU6050_I2C_RxCpltCallback(MPU6050_Handle_t *handle)
+{
+	if (handle == NULL) return;
+	
+	// Parse the received data
+	MPU6050_Parse_Data(handle);
+	
+	// Update state back to ready
+	handle->state = MPU6050_STATE_READY;
+	
+	// Immediately start reading again (continuous polling)
+	MPU6050_Start_Reading(handle);
 }
 
 

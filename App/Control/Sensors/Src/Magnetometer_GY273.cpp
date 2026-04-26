@@ -5,7 +5,7 @@
  *      Author: dalya
  */
 
-#include "../Inc/Magnetometer_GY273.hpp"
+#include "Magnetometer_GY273.hpp"
 #include <math.h>
 
 Magnetometer_GY273::Magnetometer_GY273() : offset({0, 0, 0}), scale(1.0f) {

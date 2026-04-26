@@ -16,7 +16,6 @@ void BMP280_Init(BMP280_Handle_t *handle, I2C_HandleTypeDef *hi2c)
 {
 	handle->hi2c = hi2c;
 	handle->state = BMP280_STATE_INIT;
-	handle->data_ready_callback = NULL;
 	
 	g_bmp280_handle = handle;
 	
@@ -28,11 +27,17 @@ void BMP280_Init(BMP280_Handle_t *handle, I2C_HandleTypeDef *hi2c)
 // Start reading sensor data
 void BMP280_Start_Reading(BMP280_Handle_t *handle)
 {
-	if (handle->state == BMP280_STATE_READY)
+	if (handle->state == BMP280_STATE_INIT)
 	{
+		// Read calibration data
+		handle->state = BMP280_STATE_READ_CALIB;
+		HAL_I2C_Mem_Read_IT(handle->hi2c, BMP280_I2C_ADDR, BMP280_REG_CALIB, I2C_MEMADD_SIZE_8BIT, handle->rx_buff, BMP280_CALIB_SIZE);
+	}
+	else if (handle->state == BMP280_STATE_READY)
+	{
+		// Read sensor data
 		handle->state = BMP280_STATE_READING_DATA;
-		handle->tx_buff[0] = BMP280_REG_DATA;
-		HAL_I2C_Master_Transmit_IT(handle->hi2c, BMP280_I2C_ADDR, handle->tx_buff, 1);
+		HAL_I2C_Mem_Read_IT(handle->hi2c, BMP280_I2C_ADDR, BMP280_REG_DATA, I2C_MEMADD_SIZE_8BIT, handle->rx_buff, BMP280_DATA_SIZE);
 	}
 }
 
@@ -43,42 +48,34 @@ void BMP280_Process(BMP280_Handle_t *handle)
 	// This function can be used for any polling-based checks if needed
 }
 
-// I2C Transmit complete callback
+// I2C Transmit complete callback (kept for compatibility, not used with continuous polling)
 void BMP280_I2C_TxCpltCallback(BMP280_Handle_t *handle)
 {
-	if (handle->state == BMP280_STATE_INIT)
-	{
-		// After sending calibration address, read calibration data
-		HAL_I2C_Master_Receive_IT(handle->hi2c, BMP280_I2C_ADDR | 0x01, handle->rx_buff, BMP280_CALIB_SIZE);
-	}
-	else if (handle->state == BMP280_STATE_READING_DATA)
-	{
-		// After sending data address, read sensor data
-		HAL_I2C_Master_Receive_IT(handle->hi2c, BMP280_I2C_ADDR | 0x01, handle->rx_buff, BMP280_DATA_SIZE);
-	}
+	// Not needed - HAL_I2C_Mem_Read_IT handles addressing internally
 }
 
-// I2C Receive complete callback
+// I2C Receive complete callback - process data and request next read
 void BMP280_I2C_RxCpltCallback(BMP280_Handle_t *handle)
 {
+	if (handle == NULL) return;
+	
 	if (handle->state == BMP280_STATE_INIT)
 	{
 		// Calibration data received, parse it
 		BMP280_Read_Calibration(handle);
 		
-		// Configure BMP280
-		handle->tx_buff[0] = 0xF5;
-		HAL_I2C_Master_Transmit_IT(handle->hi2c, BMP280_I2C_ADDR, handle->tx_buff, 1);
-		
-		// Write config register
+		// Write config register (blocking)
 		uint8_t config_buff[2] = {0xF5, 0b10010000};  // standby 500ms, filter 16
 		HAL_I2C_Master_Transmit(handle->hi2c, BMP280_I2C_ADDR, config_buff, 2, 1000);
 		
-		// Write control measure register
+		// Write control measure register (blocking)
 		uint8_t ctrl_buff[2] = {0xF4, 0b01010111};  // osrs_t x2, osrs_p x16, normal mode
 		HAL_I2C_Master_Transmit(handle->hi2c, BMP280_I2C_ADDR, ctrl_buff, 2, 1000);
 		
 		handle->state = BMP280_STATE_READY;
+		
+		// Start continuous polling
+		BMP280_Start_Reading(handle);
 	}
 	else if (handle->state == BMP280_STATE_READING_DATA)
 	{
@@ -86,11 +83,8 @@ void BMP280_I2C_RxCpltCallback(BMP280_Handle_t *handle)
 		BMP280_Calculate_Values(handle);
 		handle->state = BMP280_STATE_READY;
 		
-		// Call user callback if registered
-		if (handle->data_ready_callback)
-		{
-			handle->data_ready_callback();
-		}
+		// Immediately start reading again (continuous polling)
+		BMP280_Start_Reading(handle);
 	}
 }
 

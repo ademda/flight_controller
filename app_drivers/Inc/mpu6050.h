@@ -59,11 +59,7 @@ typedef struct {
 	int16_t gyro_offset_x, gyro_offset_y, gyro_offset_z;
 	
 	// I2C buffers
-	uint8_t tx_buff[1];
 	uint8_t rx_buff[14];
-	
-	// Callback function
-	void (*data_ready_callback)(void);
 } MPU6050_Handle_t;
 
 // Function declarations
@@ -71,7 +67,6 @@ void MPU6050_Init(MPU6050_Handle_t *handle, I2C_HandleTypeDef *hi2c, uint8_t i2c
 void MPU6050_Start_Reading(MPU6050_Handle_t *handle);
 void MPU6050_Process(MPU6050_Handle_t *handle);
 void MPU6050_I2C_RxCpltCallback(MPU6050_Handle_t *handle);
-void MPU6050_I2C_TxCpltCallback(MPU6050_Handle_t *handle);
 void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples);
 
 #endif /* INC_MPU6050_H_ */
