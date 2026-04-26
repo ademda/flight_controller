@@ -26,6 +26,7 @@
 #include "bmp280.h"
 #include "sbus_rx.h"
 #include "FlightControllerInit.hpp"
+#include "pid_tuning_cmd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -231,6 +232,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart->Instance == USART1) {
         ibus_uart_dma_complete_callback();
+    }
+    else if(huart->Instance == USART2) {
+        // Process character for PID tuning commands
+        extern uint8_t uart2_rx_char;
+        pid_tuning_cmd_process_char(uart2_rx_char);
+        
+        // Restart UART2 reception
+        HAL_UART_Receive_IT(huart, &uart2_rx_char, 1);
     }
 }
 

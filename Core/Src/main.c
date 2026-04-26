@@ -23,6 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "FlightControllerInit.hpp"
 #include "esc_pwm.h"
+#include "tuning.h"
+#include "pid_tuning_cmd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +55,8 @@ UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
+// Single character buffer for UART2 (tuning commands)
+uint8_t uart2_rx_char = 0;
 
 /* USER CODE END PV */
 
@@ -126,6 +130,12 @@ int main(void)
   // Initialize flight controller and sensors
   FlightController_Initialize();
   
+  // Initialize PID tuning command handler (use UART2 for tuning)
+  pid_tuning_cmd_init(&huart2);
+  
+  // Start UART2 character-by-character reception
+  HAL_UART_Receive_IT(&huart2, &uart2_rx_char, 1);
+  
   // Start main control loop (100Hz)
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
@@ -137,6 +147,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    // Process PID tuning commands from UART
+    pid_tuning_cmd_update();
+    
     HAL_Delay(10);
 
   }

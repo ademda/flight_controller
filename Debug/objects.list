@@ -2,6 +2,8 @@
 "./App/Blogic/Src/Drone.o"
 "./App/Blogic/Src/FlightController.o"
 "./App/Blogic/Src/FlightControllerInit.o"
+"./App/Blogic/Src/pid_tuning_cmd.o"
+"./App/Blogic/Src/tuning.o"
 "./App/Communication/Src/DesktopTelemetryManager.o"
 "./App/Communication/Src/GPSReceiver_Neo_6M.o"
 "./App/Communication/Src/IBUSReceiver.o"

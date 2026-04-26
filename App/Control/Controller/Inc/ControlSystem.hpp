@@ -11,6 +11,7 @@
 #include "PIDController.hpp"
 #include "StateEstimator.hpp"
 #include "MotorController.hpp"
+#include "tuning.h"
 
 /**
  * @struct Setpoints
@@ -102,6 +103,11 @@ public:
      * @return Altitude control value (0.0 to 1.0)
      */
     float getAltitudeOutput() const;
+    
+    /**
+     * @brief Update PID gains from tuning system (for dynamic PID tuning)
+     */
+    void updatePIDGainsFromTuning();
 };
 
 #endif /* CONTROL_CONTROLLER_INC_CONTROLSYSTEM_HPP_ */

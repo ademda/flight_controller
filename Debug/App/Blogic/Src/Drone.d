@@ -42,6 +42,7 @@ App/Blogic/Src/Drone.o: ../App/Blogic/Src/Drone.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Blogic/Inc/tuning.h \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Control/Controller/Inc/MotorController.hpp \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Communication/Inc/GPSReceiver.hpp \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Communication/Inc/RCReceiver.hpp \
@@ -90,6 +91,7 @@ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Control/Controll
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Blogic/Inc/tuning.h:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Control/Controller/Inc/MotorController.hpp:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Communication/Inc/GPSReceiver.hpp:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/App/Communication/Inc/RCReceiver.hpp:

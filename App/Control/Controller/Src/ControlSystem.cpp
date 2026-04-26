@@ -6,6 +6,7 @@
  */
 
 #include "ControlSystem.hpp"
+#include "tuning.h"
 #include <algorithm>
 #include <math.h>
 
@@ -26,6 +27,12 @@ ControlSystem::~ControlSystem() {
 }
 
 void ControlSystem::init() {
+    // Initialize tuning system
+    tuning_init();
+    
+    // Update PID gains from tuning variables
+    updatePIDGainsFromTuning();
+    
     // Set output limits for controllers (in degrees for attitude, in m/s for altitude)
     roll_pid.setOutputLimit(45.0f);      // Max ±45 degree correction
     pitch_pid.setOutputLimit(45.0f);
@@ -86,6 +93,27 @@ float ControlSystem::updateControl(StateEstimator& state_estimator, float dt) {
     last_yaw_output = std::max(-1.0f, std::min(yaw_cmd / 120.0f, 1.0f));
     last_altitude_output = std::max(0.0f, std::min(altitude_cmd / 2.0f + 0.5f, 1.0f)); // Offset to 0-1 range
     
+    // ========================================================================
+    // TUNING MODE: Zero out outputs for non-tuning axes
+    // ========================================================================
+    // Only allow control on the axis being tuned
+    int active_axis = tuning_get_active_axis();
+    if (active_axis >= 0) {
+        // If tuning mode is active, zero out all non-tuning axes
+        if (active_axis != 0) last_roll_output = 0.0f;    // Zero roll if not tuning
+        if (active_axis != 1) last_pitch_output = 0.0f;   // Zero pitch if not tuning
+        if (active_axis != 2) last_yaw_output = 0.0f;     // Zero yaw if not tuning
+    }
+    
+    // Update tuning monitoring variables with current state
+    tuning_update_monitor(current_roll, current_pitch, current_yaw,
+                          last_roll_output, last_pitch_output, last_yaw_output);
+    
+    // Update tuning setpoints for monitoring
+    tuning_roll_setpoint = current_setpoints.roll;
+    tuning_pitch_setpoint = current_setpoints.pitch;
+    tuning_yaw_setpoint = current_setpoints.yaw;
+    
     return last_altitude_output;
 }
 
@@ -113,4 +141,15 @@ float ControlSystem::getYawOutput() const {
 
 float ControlSystem::getAltitudeOutput() const {
     return last_altitude_output;
+}
+
+void ControlSystem::updatePIDGainsFromTuning() {
+    // Update roll PID gains from tuning variables
+    roll_pid.setGains(pid_roll_kp, pid_roll_ki, pid_roll_kd);
+    
+    // Update pitch PID gains from tuning variables
+    pitch_pid.setGains(pid_pitch_kp, pid_pitch_ki, pid_pitch_kd);
+    
+    // Update yaw PID gains from tuning variables
+    yaw_pid.setGains(pid_yaw_kp, pid_yaw_ki, pid_yaw_kd);
 }
