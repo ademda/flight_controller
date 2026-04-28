@@ -1,2 +1,0 @@
-../App/Communication/Src/RCReceiver.cpp:10:1:RCReceiver::~RCReceiver()	16	static
-../App/Communication/Src/RCReceiver.cpp:10:1:virtual RCReceiver::~RCReceiver()	16	static

@@ -1,7 +1,5 @@
-../app_drivers/Src/bmp280.c:15:6:BMP280_Init	16	static
-../app_drivers/Src/bmp280.c:29:6:BMP280_Start_Reading	16	static
-../app_drivers/Src/bmp280.c:40:6:BMP280_Process	16	static
-../app_drivers/Src/bmp280.c:47:6:BMP280_I2C_TxCpltCallback	16	static
-../app_drivers/Src/bmp280.c:62:6:BMP280_I2C_RxCpltCallback	32	static
-../app_drivers/Src/bmp280.c:98:13:BMP280_Read_Calibration	24	static
-../app_drivers/Src/bmp280.c:117:13:BMP280_Calculate_Values	88	static
+../app_drivers/Src/bmp280.c:15:6:BMP280_Init	40	static
+../app_drivers/Src/bmp280.c:55:6:BMP280_Start_Reading	24	static
+../app_drivers/Src/bmp280.c:64:6:BMP280_Process	16	static
+../app_drivers/Src/bmp280.c:71:6:BMP280_Read_Calibration	24	static
+../app_drivers/Src/bmp280.c:90:6:BMP280_Calculate_Values	88	static

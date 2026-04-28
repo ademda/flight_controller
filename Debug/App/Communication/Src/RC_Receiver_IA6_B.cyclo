@@ -1,9 +1,0 @@
-../App/Communication/Src/../Inc/RCReceiver.hpp:21:7:constexpr RCReceiver::RCReceiver()	1
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:10:1:RC_Receiver_IA6_B::RC_Receiver_IA6_B()	2
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:22:1:RC_Receiver_IA6_B::~RC_Receiver_IA6_B()	1
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:22:1:virtual RC_Receiver_IA6_B::~RC_Receiver_IA6_B()	1
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:25:6:bool RC_Receiver_IA6_B::init()	1
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:30:17:virtual Receiver_Data_t RC_Receiver_IA6_B::getCommand()	12
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:67:6:void RC_Receiver_IA6_B::updateRawChannels(uint16_t*)	2
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:73:6:bool RC_Receiver_IA6_B::isSignalLost() const	1
-../App/Communication/Src/RC_Receiver_IA6_B.cpp:77:10:uint16_t RC_Receiver_IA6_B::getRawChannel(uint8_t) const	2

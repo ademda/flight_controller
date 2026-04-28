@@ -16,6 +16,7 @@
 #include "hmc5883l.h"
 #include "bmp280.h"
 #include "mpu6050.h"
+#include "stm32f4xx_hal.h"
 
 typedef enum {
 	NON_CALIBRATED,

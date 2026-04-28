@@ -10,6 +10,7 @@
 
 #include "utils.h"
 #include "sbus_rx.h"
+#include "stm32f4xx_hal.h"
 
 #define IBUS_USER_CHANNELS	5
 
@@ -32,7 +33,7 @@ typedef struct {
 	float pitch;
 	uint16_t throttle;
 	float yaw;
-	Drone_state arm_value = DISARMED;
+	Drone_state arm_value;
 	uint16_t ibus_data[IBUS_FRAME_LENGTH];
 }RC_Command_t;
 

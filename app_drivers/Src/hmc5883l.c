@@ -57,7 +57,7 @@ HAL_StatusTypeDef HMC5883L_Init(HMC5883L_Handle_t *handle, I2C_HandleTypeDef *hi
 }
 
 // Parse received I2C data
-static void HMC5883L_Parse_Data(HMC5883L_Handle_t *handle) {
+void HMC5883L_Parse_Data(HMC5883L_Handle_t *handle) {
 	uint8_t *data = handle->rx_buff;
 	
 	// Combine bytes into 16-bit values (big-endian)
@@ -73,7 +73,7 @@ static void HMC5883L_Parse_Data(HMC5883L_Handle_t *handle) {
 }
 
 // Start reading sensor data in interrupt mode
-HAL_StatusTypeDef HMC5883L_Start_Read(HMC5883L_Handle_t *handle) {
+HAL_StatusTypeDef HMC5883L_Start_Reading(HMC5883L_Handle_t *handle) {
 	if (handle == NULL || handle->state != HMC5883L_STATE_READY) {
 		return HAL_ERROR;
 	}
@@ -92,19 +92,7 @@ HAL_StatusTypeDef HMC5883L_Start_Read(HMC5883L_Handle_t *handle) {
 	return status;
 }
 
-// I2C receive complete callback (called from HAL)
-void HMC5883L_I2C_RxCpltCallback(HMC5883L_Handle_t *handle) {
-	if (handle == NULL) return;
-	
-	// Parse the received data
-	HMC5883L_Parse_Data(handle);
-	
-	// Update state back to ready
-	handle->state = HMC5883L_STATE_READY;
-	
-	// Immediately start reading again (continuous polling)
-	HMC5883L_Start_Read(handle);
-}
+
 
 HAL_StatusTypeDef HMC5883L_GetData(HMC5883L_Handle_t *handle, float *x, float *y, float *z) {
 	if (handle == NULL) return HAL_ERROR;

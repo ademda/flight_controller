@@ -52,6 +52,8 @@ UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
+uint8_t uart_rx_buffer[1000];
+
 MPU6050_Handle_t mpu;
 HMC5883L_Handle_t hmc;
 BMP280_Handle_t bmp;
@@ -133,13 +135,13 @@ int main(void)
   
   // Enable UART2 interrupt-based character reception for tuning commands
   HAL_UART_Receive_IT(&huart2, (uint8_t*)&huart2.pRxBuffPtr, 1);
-  
+  HAL_TIM_Base_Start_IT(&htim2);
+  //the calibraion of the mpu starts triggering the mpu reads;
   // Start main control loop (100Hz)
   if (flight_controller_init() != HAL_OK){
 	  Error_Handler();
   }
 
-  HAL_TIM_Base_Start_IT(&htim2);
 
   /* USER CODE END 2 */
 
@@ -531,6 +533,7 @@ static void MX_GPIO_Init(void)
 HAL_StatusTypeDef flight_controller_init(){
 	 /*************** SENSORS + ACTUATORS INIT *******************/
 	  MPU6050_Init(&mpu, &hi2c1, MPU6050_I2C_ADDR_LOW);
+	  MPU6050_Calibrate(&mpu, 1000);
 	  if (HMC5883L_Init(&hmc, &hi2c1, HMC5883L_I2C_ADDR) != HAL_OK){
 		  return HAL_ERROR;
 	  }

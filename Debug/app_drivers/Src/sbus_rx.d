@@ -1,5 +1,5 @@
 app_drivers/Src/sbus_rx.o: ../app_drivers/Src/sbus_rx.c \
- C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/sbus_rx.h \
+ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/sbus_rx.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -33,7 +33,7 @@ app_drivers/Src/sbus_rx.o: ../app_drivers/Src/sbus_rx.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v2/app_drivers/Inc/sbus_rx.h:
+C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/sbus_rx.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:

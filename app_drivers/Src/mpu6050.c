@@ -102,23 +102,6 @@ void MPU6050_Parse_Data(MPU6050_Handle_t *handle)
 	handle->pitch = atan2f(-handle->accel_x, sqrtf(handle->accel_y * handle->accel_y + handle->accel_z * handle->accel_z)) * 180.0f / 3.14159265359f;
 }
 
-// I2C Receive complete callback - process data and immediately request next read
-void MPU6050_I2C_RxCpltCallback(MPU6050_Handle_t *handle)
-{
-	if (handle == NULL) return;
-	
-	// Parse the received data
-	MPU6050_Parse_Data(handle);
-	
-	// Update state back to ready
-	handle->state = MPU6050_STATE_READY;
-	
-	// Immediately start reading again (continuous polling)
-	MPU6050_Start_Reading(handle);
-}
-
-
-
 // Calibration function - collects samples to compute offset values
 void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples)
 {
@@ -131,7 +114,8 @@ void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples)
 	{
 		// Trigger a read
 		MPU6050_Start_Reading(handle);
-		
+		HAL_I2C_Mem_Read(handle->hi2c, handle->i2c_addr, MPU6050_REG_ACCEL_XOUT_H, I2C_MEMADD_SIZE_8BIT, handle->rx_buff, MPU6050_DATA_SIZE, 100);
+
 		// Wait for data to be read (blocking - replace with proper waiting if needed)
 		uint32_t timeout = 10000;
 		while (handle->state != MPU6050_STATE_READY && timeout > 0)

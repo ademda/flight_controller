@@ -8,6 +8,10 @@
 #ifndef INC_MOTOR_H_
 #define INC_MOTOR_H_
 
+#include <stdint.h>
+#include "stm32f4xx_hal.h"
+
+
 #define MOTOR_MIN 1200.0f
 #define MOTOR_MAX 1800.0f
 

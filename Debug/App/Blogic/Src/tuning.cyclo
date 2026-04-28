@@ -1,4 +1,0 @@
-../App/Blogic/Src/tuning.c:58:6:tuning_init	1
-../App/Blogic/Src/tuning.c:77:6:tuning_update_monitor	3
-../App/Blogic/Src/tuning.c:102:5:tuning_is_axis_enabled	5
-../App/Blogic/Src/tuning.c:115:5:tuning_get_active_axis	1

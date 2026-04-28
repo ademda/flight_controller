@@ -1,5 +1,0 @@
-../App/Communication/Src/../Inc/TelemetryManager.hpp:11:7:constexpr TelemetryManager::TelemetryManager()	1
-../App/Communication/Src/DesktopTelemetryManager.cpp:11:1:DesktopTelemetryManager::DesktopTelemetryManager()	1
-../App/Communication/Src/DesktopTelemetryManager.cpp:14:1:DesktopTelemetryManager::~DesktopTelemetryManager()	1
-../App/Communication/Src/DesktopTelemetryManager.cpp:14:1:virtual DesktopTelemetryManager::~DesktopTelemetryManager()	1
-../App/Communication/Src/DesktopTelemetryManager.cpp:17:6:virtual void DesktopTelemetryManager::LogStateVars()	1

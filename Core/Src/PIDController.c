@@ -69,7 +69,7 @@ float pid_compute(PID_Controller_t* pid_controller, float setpoint, float curren
 	}
 
 	float D_out = pid_controller->Kd*(error - pid_controller->prev_error);
-	float PID_out = PID_out + pid_controller->integral + D_out;
+	float PID_out = P_out + pid_controller->integral + D_out;
 
 	if (PID_out > pid_controller->output_max){
 		PID_out = pid_controller->output_max;

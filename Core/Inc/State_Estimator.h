@@ -9,6 +9,10 @@
 #define INC_STATE_ESTIMATOR_H_
 
 #include "utils.h"
+#include "stm32f4xx_hal.h"
+#include "bmp280.h"
+#include "mpu6050.h"
+#include "hmc5883l.h"
 
 typedef struct {
 	float roll;

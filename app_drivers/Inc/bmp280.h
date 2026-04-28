@@ -60,9 +60,9 @@ typedef struct {
 // Function declarations
 void BMP280_Init(BMP280_Handle_t *handle, I2C_HandleTypeDef *hi2c);
 void BMP280_Start_Reading(BMP280_Handle_t *handle);
-static void BMP280_Read_Calibration(BMP280_Handle_t *handle);
-static void BMP280_Calculate_Values(BMP280_Handle_t *handle);
+void BMP280_Read_Calibration(BMP280_Handle_t *handle);
+void BMP280_Calculate_Values(BMP280_Handle_t *handle);
 void BMP280_Process(BMP280_Handle_t *handle);
-void BMP280_I2C_RxCpltCallback(BMP280_Handle_t *handle);
+void BMP280_I2C_RxCpltCallback();
 
 #endif /* INC_BMP280_H_ */

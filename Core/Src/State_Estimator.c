@@ -5,9 +5,11 @@
  *      Author: dalya
  */
 #include "mpu6050.h"
+#include "bmp280.h"
+#include "hmc5883l.h"
+#include "State_Estimator.h"
 
-
-void compute_current_state(State_t *state, MPU6050_Handle_t* mpu, BMP280_Handle_t *bmp, HMC5883L_Handle_t *hmc){
+void compute_current_state(State_Estimator_t *state, MPU6050_Handle_t* mpu, BMP280_Handle_t *bmp, HMC5883L_Handle_t *hmc){
 	state->pitch = mpu->pitch;
 	state->roll = mpu->roll;
 	state->yaw = hmc->yaw;

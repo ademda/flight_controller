@@ -1,5 +1,0 @@
-../App/Communication/Src/../Inc/TelemetryManager.hpp:11:7:constexpr TelemetryManager::TelemetryManager()	1
-../App/Communication/Src/MCUTelemetryManager.cpp:10:1:MCUTelemetryManager::MCUTelemetryManager()	1
-../App/Communication/Src/MCUTelemetryManager.cpp:13:1:MCUTelemetryManager::~MCUTelemetryManager()	1
-../App/Communication/Src/MCUTelemetryManager.cpp:13:1:virtual MCUTelemetryManager::~MCUTelemetryManager()	1
-../App/Communication/Src/MCUTelemetryManager.cpp:16:6:virtual void MCUTelemetryManager::LogStateVars()	1

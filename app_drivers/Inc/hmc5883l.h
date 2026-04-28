@@ -85,7 +85,7 @@ HAL_StatusTypeDef HMC5883L_Init(HMC5883L_Handle_t *handle, I2C_HandleTypeDef *hi
  * @param handle Pointer to HMC5883L handle
  * @return HAL_OK if successful
  */
-HAL_StatusTypeDef HMC5883L_Start_Read(HMC5883L_Handle_t *handle);
+HAL_StatusTypeDef HMC5883L_Start_Reading(HMC5883L_Handle_t *handle);
 
 /**
  * @brief Get magnetic field in Gauss
@@ -99,8 +99,8 @@ HAL_StatusTypeDef HMC5883L_GetData(HMC5883L_Handle_t *handle, float *x, float *y
  * @brief I2C receive complete callback (called from HAL)
  * @param handle Pointer to HMC5883L handle
  */
-void HMC5883L_I2C_RxCpltCallback(HMC5883L_Handle_t *handle);
-
+void HMC5883L_I2C_RxCpltCallback();
+void HMC5883L_Parse_Data(HMC5883L_Handle_t *handle);
 /**
  * @brief Calculate heading from magnetic field
  * @param x, y Magnetic field X and Y components

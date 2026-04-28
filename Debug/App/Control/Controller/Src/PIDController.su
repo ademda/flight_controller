@@ -1,7 +1,0 @@
-../App/Control/Controller/Src/PIDController.cpp:10:1:PIDController::PIDController(float, float, float, float, float)	32	static
-../App/Control/Controller/Src/PIDController.cpp:16:1:PIDController::~PIDController()	16	static
-../App/Control/Controller/Src/PIDController.cpp:20:7:float PIDController::calculate(float, float)	48	static
-../App/Control/Controller/Src/PIDController.cpp:57:6:void PIDController::reset()	16	static
-../App/Control/Controller/Src/PIDController.cpp:62:6:void PIDController::setGains(float, float, float)	24	static
-../App/Control/Controller/Src/PIDController.cpp:68:6:void PIDController::setOutputLimit(float)	16	static
-../App/Control/Controller/Src/PIDController.cpp:72:6:void PIDController::setIntegralLimit(float)	16	static

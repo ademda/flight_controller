@@ -1,3 +1,0 @@
-../App/Control/Sensors/Src/Barometer.cpp:10:1:Barometer::Barometer()	16	static
-../App/Control/Sensors/Src/Barometer.cpp:13:1:Barometer::~Barometer()	16	static
-../App/Control/Sensors/Src/Barometer.cpp:13:1:virtual Barometer::~Barometer()	16	static

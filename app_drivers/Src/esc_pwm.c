@@ -75,10 +75,10 @@ void ESC_PWM_SetThrottle(TIM_HandleTypeDef *htim, uint16_t throttle1, uint16_t t
 		return;
 
 	// Set PWM for each motor
-	ESC_PWM_SetPulse_us(htim, ESC_TIMER_CH1, pulse1_us);
-	ESC_PWM_SetPulse_us(htim, ESC_TIMER_CH2, pulse2_us);
-	ESC_PWM_SetPulse_us(htim, ESC_TIMER_CH3, pulse3_us);
-	ESC_PWM_SetPulse_us(htim, ESC_TIMER_CH4, pulse4_us);
+	ESC_PWM_SetPulse_us(htim, TIM_CHANNEL_1, throttle1);
+	ESC_PWM_SetPulse_us(htim, TIM_CHANNEL_2, throttle2);
+	ESC_PWM_SetPulse_us(htim, TIM_CHANNEL_3, throttle3);
+	ESC_PWM_SetPulse_us(htim, TIM_CHANNEL_4, throttle4);
 }
 
 /**

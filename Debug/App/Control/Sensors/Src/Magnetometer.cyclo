@@ -1,3 +1,0 @@
-../App/Control/Sensors/Src/Magnetometer.cpp:10:1:Magnetometer::Magnetometer()	1
-../App/Control/Sensors/Src/Magnetometer.cpp:13:1:Magnetometer::~Magnetometer()	1
-../App/Control/Sensors/Src/Magnetometer.cpp:13:1:virtual Magnetometer::~Magnetometer()	1

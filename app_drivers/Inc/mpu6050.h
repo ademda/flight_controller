@@ -66,7 +66,7 @@ typedef struct {
 void MPU6050_Init(MPU6050_Handle_t *handle, I2C_HandleTypeDef *hi2c, uint8_t i2c_addr);
 void MPU6050_Start_Reading(MPU6050_Handle_t *handle);
 void MPU6050_Process(MPU6050_Handle_t *handle);
-void MPU6050_I2C_RxCpltCallback(MPU6050_Handle_t *handle);
+void MPU6050_I2C_RxCpltCallback();
 void MPU6050_Calibrate(MPU6050_Handle_t *handle, uint16_t num_samples);
 
 #endif /* INC_MPU6050_H_ */
