@@ -25,6 +25,7 @@
 #include "mpu6050.h"
 #include "bmp280.h"
 #include "sbus_rx.h"
+#include "FlightController.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+extern Drone_t drone;
 extern BMP280_Handle_t *g_bmp280_handle;
 extern MPU6050_Handle_t *g_mpu6050_handle;
 extern uint8_t ibus_dma_buffer[IBUS_FRAME_LENGTH];
@@ -221,7 +223,7 @@ void DMA2_Stream2_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Instance == TIM2)
+	if (htim->Instance == TIM2 && drone->calib_state == CALIBRATED)
 	{
 		flight_controller_update();
 	}

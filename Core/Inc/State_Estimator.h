@@ -17,8 +17,8 @@ typedef struct {
 	float altitude;
 	float last_altitude;
 	float climb_rate;
-}State_t;
+}State_Estimator_t;
 
-void compute_current_state(State_t *state, MPU6050_Handle_t* mpu, BMP280_Handle_t *bmp, HMC5883L_Handle_t *hmc);
+void compute_current_state(State_Estimator_t *state, MPU6050_Handle_t* mpu, BMP280_Handle_t *bmp, HMC5883L_Handle_t *hmc);
 
 #endif /* INC_STATE_ESTIMATOR_H_ */

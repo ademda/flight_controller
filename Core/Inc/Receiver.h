@@ -32,7 +32,7 @@ typedef struct {
 	float pitch;
 	uint16_t throttle;
 	float yaw;
-	Drone_state arm_value;
+	Drone_state arm_value = DISARMED;
 	uint16_t ibus_data[IBUS_FRAME_LENGTH];
 }RC_Command_t;
 

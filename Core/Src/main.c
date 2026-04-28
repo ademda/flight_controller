@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "FlightController.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,8 +52,19 @@ UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
-// Single character buffer for UART2 (tuning commands)
+MPU6050_Handle_t mpu;
+HMC5883L_Handle_t hmc;
+BMP280_Handle_t bmp;
+Motor_t motors;
+Drone_t drone;
 
+PID_Controller_t pitch_pid;
+PID_Controller_t roll_pid;
+PID_Controller_t yaw_pid;
+PID_Controller_t alt_pid;
+
+RC_Command_t rc_cmd;
+State_Estimator_t state;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,6 +78,7 @@ static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
+HAL_StatusTypeDef flight_controller_init();
 
 /* USER CODE END PFP */
 
@@ -123,7 +135,12 @@ int main(void)
   HAL_UART_Receive_IT(&huart2, (uint8_t*)&huart2.pRxBuffPtr, 1);
   
   // Start main control loop (100Hz)
+  if (flight_controller_init() != HAL_OK){
+	  Error_Handler();
+  }
+
   HAL_TIM_Base_Start_IT(&htim2);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -511,6 +528,33 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+HAL_StatusTypeDef flight_controller_init(){
+	 /*************** SENSORS + ACTUATORS INIT *******************/
+	  MPU6050_Init(&mpu, &hi2c1, MPU6050_I2C_ADDR_LOW);
+	  if (HMC5883L_Init(&hmc, &hi2c1, HMC5883L_I2C_ADDR) != HAL_OK){
+		  return HAL_ERROR;
+	  }
+	  BMP280_Init(&bmp, &hi2c1);
+	  ESC_PWM_Init(&htim1);
+	  /*************************** CONTROL SYSTEM INIT *******************/
+	  pid_init(&roll_pid, &pitch_pid, &yaw_pid, &alt_pid);
+	/********************** DRONE STRUCTURE INIT  ************************/
+	  drone->hmc = &hmc;
+	  drone->mpu = &mpu;
+	  drone->bmp = &bmp;
+	  drone->motor_out = &motors;
+
+	  drone->alt_pid = &alt_pid;
+	  drone->pitch_pid = &pitch_pid;
+	  drone->roll_pid = &roll_pid;
+	  drone->yaw_pid = &yaw_pid;
+
+	  drone->rc_cmd = &rc_cmd;
+	  drone->state = &state;
+
+	  drone->calib_state = CALIBRATED;
+	  return HAL_OK;
+}
 
 /* USER CODE END 4 */
 

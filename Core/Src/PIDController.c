@@ -77,6 +77,7 @@ float pid_compute(PID_Controller_t* pid_controller, float setpoint, float curren
 	else if (PID_out < pid_controller->output_min){
 		PID_out = pid_controller->output_min;
 	}
+    pid_controller->prev_error = error;
 	return PID_out;
 }
 
