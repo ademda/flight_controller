@@ -65,7 +65,7 @@ typedef struct {
 	
 	// Scaled sensor data (in Gauss)
 	float mag_x, mag_y, mag_z;
-	
+	float yaw; float heading;
 	// Calibration
 	float offset_x, offset_y, offset_z;
 	float scale_x, scale_y, scale_z;

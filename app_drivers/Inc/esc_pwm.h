@@ -72,7 +72,7 @@ void ESC_PWM_SetPulse(TIM_HandleTypeDef *htim, uint32_t channel, uint16_t pulse)
  * @param throttle3 Motor 3 throttle
  * @param throttle4 Motor 4 throttle
  */
-void ESC_PWM_SetThrottle(TIM_HandleTypeDef *htim, float throttle1, float throttle2, float throttle3, float throttle4);
+void ESC_PWM_SetThrottle(TIM_HandleTypeDef *htim, uint16_t throttle1, uint16_t throttle2, uint16_t throttle3, uint16_t throttle4);
 
 /**
  * @brief Calibrate ESCs (must be done before first use)

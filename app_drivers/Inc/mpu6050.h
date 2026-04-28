@@ -48,7 +48,7 @@ typedef struct {
 	float accel_x, accel_y, accel_z;      // in g
 	float gyro_x, gyro_y, gyro_z;         // in deg/s
 	float temperature;                     // in °C
-	float roll, pitch;                     // in degrees (calculated from accel)
+	float roll, pitch, yaw;                     // in degrees (calculated from accel)
 	
 	// Scale factors
 	float accel_scale;  // from configuration

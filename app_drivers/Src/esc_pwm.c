@@ -69,22 +69,10 @@ void ESC_PWM_SetPulse(TIM_HandleTypeDef *htim, uint32_t channel, uint16_t pulse)
 /**
  * Set throttle for all 4 motors (0.0 to 1.0)
  */
-void ESC_PWM_SetThrottle(TIM_HandleTypeDef *htim, float throttle1, float throttle2, float throttle3, float throttle4)
+void ESC_PWM_SetThrottle(TIM_HandleTypeDef *htim, uint16_t throttle1, uint16_t throttle2, uint16_t throttle3, uint16_t throttle4)
 {
 	if (htim == NULL)
 		return;
-
-	// Clamp throttle values
-	throttle1 = MAX(0.0f, MIN(throttle1, 1.0f));
-	throttle2 = MAX(0.0f, MIN(throttle2, 1.0f));
-	throttle3 = MAX(0.0f, MIN(throttle3, 1.0f));
-	throttle4 = MAX(0.0f, MIN(throttle4, 1.0f));
-
-	// Convert throttle (0.0-1.0) to pulse width (1000-2000us)
-	uint16_t pulse1_us = (uint16_t)(ESC_PWM_MIN_US + (ESC_PWM_MAX_US - ESC_PWM_MIN_US) * throttle1);
-	uint16_t pulse2_us = (uint16_t)(ESC_PWM_MIN_US + (ESC_PWM_MAX_US - ESC_PWM_MIN_US) * throttle2);
-	uint16_t pulse3_us = (uint16_t)(ESC_PWM_MIN_US + (ESC_PWM_MAX_US - ESC_PWM_MIN_US) * throttle3);
-	uint16_t pulse4_us = (uint16_t)(ESC_PWM_MIN_US + (ESC_PWM_MAX_US - ESC_PWM_MIN_US) * throttle4);
 
 	// Set PWM for each motor
 	ESC_PWM_SetPulse_us(htim, ESC_TIMER_CH1, pulse1_us);
@@ -103,15 +91,15 @@ void ESC_PWM_Calibrate(TIM_HandleTypeDef *htim, uint32_t duration_ms)
 		return;
 
 	// Step 1: Send maximum throttle (2000us) for calibration
-	ESC_PWM_SetThrottle(htim, 1.0f, 1.0f, 1.0f, 1.0f);
+	ESC_PWM_SetThrottle(htim, 2000, 2000, 2000, 2000);
 	HAL_Delay(duration_ms);
 
 	// Step 2: Send minimum throttle (1000us) for calibration
-	ESC_PWM_SetThrottle(htim, 0.0f, 0.0f, 0.0f, 0.0f);
+	ESC_PWM_SetThrottle(htim, 1000, 1000, 1000, 1000);
 	HAL_Delay(duration_ms);
 
 	// After calibration, ESCs should be ready to receive commands
 	// Set to neutral (1500us) before starting
-	ESC_PWM_SetThrottle(htim, 0.5f, 0.5f, 0.5f, 0.5f);
+	ESC_PWM_SetThrottle(htim, 1500, 1500, 1500, 1500);
 	HAL_Delay(500);
 }
