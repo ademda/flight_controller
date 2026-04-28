@@ -34,7 +34,7 @@ typedef struct {
 	PID_Controller_t* yaw_pid;
 	PID_Controller_t* alt_pid;
 	Motor_t* motor_out;
-	Calibration_state calib_state = NON_CALIBRATED;
+	Calibration_state calib_state;
 }Drone_t;
 
 

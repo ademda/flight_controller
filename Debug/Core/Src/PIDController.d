@@ -38,7 +38,7 @@ Core/Src/PIDController.o: ../Core/Src/PIDController.c \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/bmp280.h \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/mpu6050.h \
  C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/hmc5883l.h \
- ../Core/Inc/PIDController.h ../Core/Inc/PIDConstants.h
+ ../Core/Inc/PIDConstants.h
 ../Core/Inc/PIDController.h:
 ../Core/Inc/Receiver.h:
 ../Core/Inc/utils.h:
@@ -80,5 +80,4 @@ C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/sbus
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/bmp280.h:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/mpu6050.h:
 C:/Users/dalya/STM32CubeIDE/Project_ws/flight_controller_v3/app_drivers/Inc/hmc5883l.h:
-../Core/Inc/PIDController.h:
 ../Core/Inc/PIDConstants.h:

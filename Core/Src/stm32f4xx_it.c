@@ -249,9 +249,9 @@ void DMA2_Stream2_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Instance == TIM2 && drone->calib_state == CALIBRATED)
+	if (htim->Instance == TIM2 && drone.calib_state == CALIBRATED)
 	{
-		flight_controller_update();
+		flight_controller_update(&drone);
 	}
 }
 
@@ -269,7 +269,7 @@ void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c){
 	else if (bmp.state == BMP280_STATE_READING_DATA){
 		HMC5883L_I2C_RxCpltCallback();
 	}
-	else if (imu.state == MPU6050_STATE_READING_DATA){
+	else if (mpu.state == MPU6050_STATE_READING_DATA){
 		MPU6050_I2C_RxCpltCallback();
 	}
 	else {
@@ -298,14 +298,12 @@ void MPU6050_I2C_RxCpltCallback()
 }
 
 void BMP280_I2C_RxCpltCallback(){
-	if (bmp == NULL) return;
 	BMP280_Calculate_Values(&bmp);
 	bmp.state = BMP280_STATE_READY;
 }
 
 // I2C receive complete callback (called from HAL)
 void HMC5883L_I2C_RxCpltCallback() {
-	if (hmc == NULL) return;
 	HMC5883L_Parse_Data(&hmc);
 	hmc.state = HMC5883L_STATE_READY;
 

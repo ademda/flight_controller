@@ -542,20 +542,20 @@ HAL_StatusTypeDef flight_controller_init(){
 	  /*************************** CONTROL SYSTEM INIT *******************/
 	  pid_init(&roll_pid, &pitch_pid, &yaw_pid, &alt_pid);
 	/********************** DRONE STRUCTURE INIT  ************************/
-	  drone->hmc = &hmc;
-	  drone->mpu = &mpu;
-	  drone->bmp = &bmp;
-	  drone->motor_out = &motors;
+	  drone.hmc = &hmc;
+	  drone.mpu = &mpu;
+	  drone.bmp = &bmp;
+	  drone.motor_out = &motors;
 
-	  drone->alt_pid = &alt_pid;
-	  drone->pitch_pid = &pitch_pid;
-	  drone->roll_pid = &roll_pid;
-	  drone->yaw_pid = &yaw_pid;
+	  drone.alt_pid = &alt_pid;
+	  drone.pitch_pid = &pitch_pid;
+	  drone.roll_pid = &roll_pid;
+	  drone.yaw_pid = &yaw_pid;
 
-	  drone->rc_cmd = &rc_cmd;
-	  drone->state = &state;
+	  drone.rc_cmd = &rc_cmd;
+	  drone.state = &state;
 
-	  drone->calib_state = CALIBRATED;
+	  drone.calib_state = CALIBRATED;
 	  return HAL_OK;
 }
 

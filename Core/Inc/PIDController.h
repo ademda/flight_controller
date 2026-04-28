@@ -31,8 +31,6 @@ float pid_compute(PID_Controller_t* pid_controller, float setpoint, float curren
 
 void pid_reset(PID_Controller_t *pid);
 
-void drone_control(RC_Command_t rc_cmd, State_Estimator_t state);
-
 
 
 #endif /* INC_PIDCONTROLLER_H_ */
