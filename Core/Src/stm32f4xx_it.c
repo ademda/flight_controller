@@ -267,7 +267,7 @@ void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c){
 		HMC5883L_I2C_RxCpltCallback();
 	}
 	else if (bmp.state == BMP280_STATE_READING_DATA){
-		HMC5883L_I2C_RxCpltCallback();
+		BMP280_I2C_RxCpltCallback();
 	}
 	else if (mpu.state == MPU6050_STATE_READING_DATA){
 		MPU6050_I2C_RxCpltCallback();

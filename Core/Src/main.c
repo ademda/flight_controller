@@ -127,12 +127,6 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
-  // Start PWM for ESCs
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-  
   // Enable UART2 interrupt-based character reception for tuning commands
   HAL_UART_Receive_IT(&huart2, (uint8_t*)&huart2.pRxBuffPtr, 1);
   HAL_TIM_Base_Start_IT(&htim2);
@@ -532,6 +526,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 HAL_StatusTypeDef flight_controller_init(){
 	 /*************** SENSORS + ACTUATORS INIT *******************/
+    ibus_uart_init(&huart1);
 	  MPU6050_Init(&mpu, &hi2c1, MPU6050_I2C_ADDR_LOW);
 	  MPU6050_Calibrate(&mpu, 1000);
 	  if (HMC5883L_Init(&hmc, &hi2c1, HMC5883L_I2C_ADDR) != HAL_OK){
@@ -554,6 +549,8 @@ HAL_StatusTypeDef flight_controller_init(){
 
 	  drone.rc_cmd = &rc_cmd;
 	  drone.state = &state;
+
+	  ESC_PWM_Calibrate (&htim1, 1000);
 
 	  drone.calib_state = CALIBRATED;
 	  return HAL_OK;

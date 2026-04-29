@@ -10,7 +10,7 @@
 extern uint8_t uart_rx_buffer[1000];
 void parse_received_data(uint16_t *ibus_data){
 	for (uint8_t channel_index = 0 ,buffer_index = 2; channel_index < IBUS_USER_CHANNELS ; channel_index++, buffer_index+= 2){
-		ibus_data[channel_index] = uart_rx_buffer[buffer_index] << 8 | uart_rx_buffer[buffer_index];
+		ibus_data[channel_index] = uart_rx_buffer[buffer_index] << 8 | uart_rx_buffer[buffer_index + 1];	
 	}
 }
 

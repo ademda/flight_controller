@@ -9,7 +9,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-
+#include "Motor.h"
+extern Motor_t motors;
 // Utility macros for min/max
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
@@ -22,7 +23,8 @@ bool ESC_PWM_Init(TIM_HandleTypeDef *htim)
 {
 	if (htim == NULL)
 		return false;
-
+	
+	motors.htim = htim;
 	// Start PWM generation on all 4 channels
 	HAL_TIM_PWM_Start(htim, ESC_TIMER_CH1);
 	HAL_TIM_PWM_Start(htim, ESC_TIMER_CH2);
